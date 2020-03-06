@@ -29,7 +29,7 @@ public class Main {
 
         System.out.println("inital.size() = " + inital.size());
 
-        for(int y = 0; y < distances[0].length; y++) {
+        for(int y = 0; y < distances[0].length; y++) { // først  -> x[0] ->  ned y[] -> x[1] -> ned y[]
             for(int x = 0; x < distances[0].length; x++) {
                 if(distances[x][y] == -1) {
                     break;
