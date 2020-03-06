@@ -11,6 +11,10 @@ public class Edge {
         this.edgeLength = edgeLength;
     }
 
+    public double getEdgeLength() {
+        return edgeLength;
+    }
+
     @Override
     public String toString() {
         return "node1: " + node1.getName() + ", node2: " + node2.getName() + ", dist: " + edgeLength;
