@@ -44,11 +44,11 @@ public class Main {
         for(int x = distances[0].length - 1; x >= 0; x--) {
             for(int y = distances[0].length - 1; y >= 0; y--) {
                 if(distances[x][y] == -1) {
-                   // break;
+                    break;
                 } else {
                     int distance = distances[x][y];
                     if (distance == 0) {
-                        //break;
+                        break;
                     } else {
                         Edge edge = new Edge(inital.get(y), inital.get(x), distances[x][y]);
                         Node node = inital.get(y);
