@@ -13,6 +13,6 @@ public class Edge {
 
     @Override
     public String toString() {
-        return "node1: " + node1 + ", node2: " + node2 + ", dist: " + edgeLength;
+        return "node1: " + node1.getName() + ", node2: " + node2.getName() + ", dist: " + edgeLength;
     }
 }
