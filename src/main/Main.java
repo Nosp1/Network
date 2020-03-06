@@ -34,16 +34,26 @@ public class Main {
                 if(distances[x][y] == -1) {
                     break;
                 } else {
-                    Edge edge = new Edge(inital.get(x), inital.get(y), distances[x][y]);
-                    Node node = inital.get(x);
-                    node.addEdge(edge);
+                    int distance = distances[x][y];
+                    if(distance == 0) {
+                        break;
+                    } else {
+                        Edge edge = new Edge(inital.get(x), inital.get(y), distances[x][y]);
+                        Node node = inital.get(x);
+                        node.addEdge(edge);
+                    }
                 }
             }
         }
 
         for(int y = distances[0].length-1; y > 0; y--) {
             for(int x = distances[0].length-1; x > 0; x--) {
-                
+                if(distances[x][y] == -1) {
+                    break;
+                }
+                Edge edge = new Edge(inital.get(x), inital.get(y), distances[x][y]);
+                Node node = inital.get(x);
+                node.addEdge(edge);
             }
         }
 
