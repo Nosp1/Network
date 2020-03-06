@@ -16,12 +16,12 @@ public class Main {
         inital = new ArrayList<>();
         String[] names = {"A", "B", "C", "D", "E", "F"};
 
-        distances[0] = new int[]{0, 10, 5, 9999, 3, 12};
-        distances[1] = new int[]{-1, 0, 17, 9, 17, 12};
-        distances[2] = new int[]{-1, -1, 0, 35, 3, 12};
-        distances[3] = new int[]{-1, -1, -1, 0, 999, 12};
-        distances[4] = new int[]{-1, -1, -1, -1, 0, 12};
-        distances[5] = new int[]{-1, -1, -1, -1, -1, 0};
+        distances[0] = new int[]{ 0, 10,  5, 9999,   3,   12};
+        distances[1] = new int[]{-1,  0, 17,    9,  17,   12};
+        distances[2] = new int[]{-1, -1,  0,   35,   3,   12};
+        distances[3] = new int[]{-1, -1, -1,    0, 999,   12};
+        distances[4] = new int[]{-1, -1, -1,   -1,   0,   12};
+        distances[5] = new int[]{-1, -1, -1,   -1,  -1,    0};
 
         for(int i = 0; i < distances[0].length; i++) {
             inital.add(new Node(names[i]));
@@ -38,6 +38,12 @@ public class Main {
                     Node node = inital.get(x);
                     node.addEdge(edge);
                 }
+            }
+        }
+
+        for(int y = distances[0].length-1; y > 0; y--) {
+            for(int x = distances[0].length-1; x > 0; x--) {
+                
             }
         }
 
