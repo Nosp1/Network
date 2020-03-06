@@ -1,5 +1,6 @@
 package main;
 
+import node.Edge;
 import node.Node;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class Main {
     public Main() {
         this.distances = new int[6][6];
         inital = new ArrayList<>();
+        String[] names = {"A", "B", "C", "D", "E", "F"};
 
         distances[0] = new int[]{0, 10, 5, 9999, 3, 12};
         distances[1] = new int[]{-1, 0, 17, 9, 17, 12};
@@ -21,10 +23,34 @@ public class Main {
         distances[4] = new int[]{-1, -1, -1, -1, 0, 12};
         distances[5] = new int[]{-1, -1, -1, -1, -1, -1, 0};
 
-        
+        for(int i = 0; i < distances[0].length; i++) {
+            inital.add(new Node(names[i]));
+        }
+
+        System.out.println("inital.size() = " + inital.size());
+
+        for(int x = 0; x < distances[0].length; x++) {
+            for(int y = 0; y < distances[0].length; y++) {
+                if(distances[x][y] == -1) {
+                    break;
+                } else {
+                    System.out.println("x: " + x + ", y: " + y);
+                    System.out.println("inital = " + inital.get(y));
+                    inital.get(x).addEdge(new Edge(inital.get(x), inital.get(y), distances[x][y]));
+                }
+            }
+        }
+
+        for(Node n : inital) {
+            for(Edge e : n.getEdges()) {
+                System.out.println(e);
+            }
+        }
+
+        inital.get(0).addEdge(new Edge(inital.get(0), inital.get(1), 10));
     }
 
     public static void main(String[] args) {
-	// write your code here
+	    new Main();
     }
 }

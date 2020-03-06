@@ -4,15 +4,19 @@ import java.util.List;
 
 public class Node {
 
+    String name;
     boolean visited;
-    List<Node> adjacent;
+    List<Edge> edges;
 
-    public Node(List<Node> adjacent) {
-        this(false, adjacent);
+    public Node(String name) {
+        this.name = name;
     }
 
-    public Node(boolean visited, List<Node> adjacent) {
-        this.visited = visited;
-        this.adjacent = adjacent;
+    public void addEdge(Edge edge) {
+        edges.add(edge);
+    }
+
+    public List<Edge> getEdges() {
+        return edges;
     }
 }
