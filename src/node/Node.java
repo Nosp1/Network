@@ -1,5 +1,6 @@
 package node;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Node {
@@ -10,6 +11,11 @@ public class Node {
 
     public Node(String name) {
         this.name = name;
+        this.edges = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void addEdge(Edge edge) {

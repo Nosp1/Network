@@ -34,20 +34,19 @@ public class Main {
                 if(distances[x][y] == -1) {
                     break;
                 } else {
-                    System.out.println("x: " + x + ", y: " + y);
-                    System.out.println("inital = " + inital.get(y));
-                    inital.get(x).addEdge(new Edge(inital.get(x), inital.get(y), distances[x][y]));
+                    Edge edge = new Edge(inital.get(x), inital.get(y), distances[x][y]);
+                    Node node = inital.get(x);
+                    node.addEdge(edge);
                 }
             }
         }
 
         for(Node n : inital) {
+            System.out.print(n.getName() + ": ");
             for(Edge e : n.getEdges()) {
-                System.out.println(e);
+                System.out.println("\t" + e);
             }
         }
-
-        inital.get(0).addEdge(new Edge(inital.get(0), inital.get(1), 10));
     }
 
     public static void main(String[] args) {
