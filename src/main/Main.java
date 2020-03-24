@@ -108,29 +108,8 @@ public class Main {
     public static void main(String[] args) {
         new Main();
     }
-    // et forsøk....
-    public void tempMethod(List <Node> nodes) {
-        System.out.println(nodes.size());
-        for (Node e : nodes) {
-            System.out.println("e.getName() = " + e.getName());
-            System.out.println("e.getEdges().get(0) = " + e.getEdges().get(0));
-            List<Edge> edgeList = e.getEdges();
-
-            for (int i = 1; i <= edgeList.size(); i++) {
-
-                if (i <= edgeList.size()) {
-                    System.out.println("\"if\" = " + "if");
-                    System.out.println( edgeList.get(i).toString() + edgeList.get(i - 1 ).toString());
-                } else {
-                    System.out.println("\"else\" = " + "else");
-                    System.out.println("edgeList.get(i).toString() = " + edgeList.get(i).toString());
-                }
 
 
-            }
-
-        }
-    }
 }
 
 
