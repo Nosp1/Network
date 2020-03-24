@@ -69,47 +69,40 @@ public class Main {
         shortestpath(inital);
     }
 
-
-    /**
-     *
-     * Forsøk på å sammenligne alle edges i en Node med en annen Node.
-     */
-    public List<Integer>  shortestpath(List<Node> nodes) {
-            int y = 0;
-
-        List<Integer> sumAllEdges = new ArrayList<>();
-            while (y < 6) {
-                int sum = 0;
-                Node n = nodes.get(y);  //henter node y
-                for (Edge e : n.getEdges()) { //henter edge list
-                    System.out.println("e.toString() = " + e.toString());
-                    sum += e.getEdgeLength(); //summerer alle edges
-                    System.out.println("sum = " + sum);
-                    sumAllEdges.add(sum);
-
-                    System.out.println("y = " + y);
-
-
-                }
-                y++;
-            }
-            for (int i : sumAllEdges) {
-                System.out.println(i);
-            }
-            return sumAllEdges;
-       }
-
-       public void checkSums(List<Integer> list) {
-        //todo compare value of all sums.
-        // if sum < sum1. sum is faster
-       }
-
-
     public static void main(String[] args) {
         new Main();
     }
 
+    /**
+     * Forsøk på å sammenligne alle edges i en Node med en annen Node.
+     */
+    public List<Double> shortestpath(List<Node> nodes) {
+        int y = 0;
 
+        List<Double> sumAllEdges = new ArrayList<>();
+        while (y < 6) {
+            double sum = 0;
+            Node n = nodes.get(y);  //henter node y
+            for (Edge e : n.getEdges()) { //henter edge list
+                System.out.println("e.toString() = " + e.toString());
+                sum = e.getEdgeLength(); //summerer alle edges
+                System.out.println("sum = " + sum);
+                sumAllEdges.add(sum);
+
+                System.out.println("y = " + y);
+            }
+            y++;
+        }
+        for (double i : sumAllEdges) {
+            System.out.println(i);
+        }
+        return sumAllEdges;
+    }
+
+    public void checkSums(List<Integer> list) {
+        //todo compare value of all sums.
+        // if sum < sum1. sum is faster
+    }
 }
 
 
