@@ -88,9 +88,7 @@ public class Main {
                     sumAllEdges.add(sum);
 
                     System.out.println("y = " + y);
-                    //todo return sum?
-                    // compare sum of y + 1 med y.
-                    // if sumy < sumy1. så er sumY raskeste vei?.
+
 
                 }
                 y++;
