@@ -58,16 +58,81 @@ public class Main {
             }
         }
 
-        for (Node n : inital) {
+      /*  for (Node n : inital) {
             System.out.print(n.getName() + ": ");
             for (Edge e : n.getEdges()) {
                 System.out.println("\t" + e);
             }
             System.out.println();
         }
+*/
+        shortestpath(inital);
     }
+
+
+    /**
+     *
+     * Forsøk på å sammenligne alle edges i en Node med en annen Node.
+     */
+    public List<Integer>  shortestpath(List<Node> nodes) {
+            int y = 0;
+
+        List<Integer> sumAllEdges = new ArrayList<>();
+            while (y < 6) {
+                int sum = 0;
+                Node n = nodes.get(y);  //henter node y
+                for (Edge e : n.getEdges()) { //henter edge list
+                    System.out.println("e.toString() = " + e.toString());
+                    sum += e.getEdgeLength(); //summerer alle edges
+                    System.out.println("sum = " + sum);
+                    sumAllEdges.add(sum);
+
+                    System.out.println("y = " + y);
+                    //todo return sum?
+                    // compare sum of y + 1 med y.
+                    // if sumy < sumy1. så er sumY raskeste vei?.
+
+                }
+                y++;
+            }
+            for (int i : sumAllEdges) {
+                System.out.println(i);
+            }
+            return sumAllEdges;
+       }
+
+       public void checkSums(List<Integer> list) {
+        //todo compare value of all sums.
+        // if sum < sum1. sum is faster
+       }
+
 
     public static void main(String[] args) {
         new Main();
     }
+    // et forsøk....
+    public void tempMethod(List <Node> nodes) {
+        System.out.println(nodes.size());
+        for (Node e : nodes) {
+            System.out.println("e.getName() = " + e.getName());
+            System.out.println("e.getEdges().get(0) = " + e.getEdges().get(0));
+            List<Edge> edgeList = e.getEdges();
+
+            for (int i = 1; i <= edgeList.size(); i++) {
+
+                if (i <= edgeList.size()) {
+                    System.out.println("\"if\" = " + "if");
+                    System.out.println( edgeList.get(i).toString() + edgeList.get(i - 1 ).toString());
+                } else {
+                    System.out.println("\"else\" = " + "else");
+                    System.out.println("edgeList.get(i).toString() = " + edgeList.get(i).toString());
+                }
+
+
+            }
+
+        }
+    }
 }
+
+
