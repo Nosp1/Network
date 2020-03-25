@@ -58,19 +58,51 @@ public class Main {
             }
         }
 
-      /*  for (Node n : inital) {
+        /*
+            step one: pick a node.
+            step two: set visited true
+
+            step three: for (Node n : initial) {
+                if (n.visited && !n.finished) {
+                       step four: getShortestEdge()
+                       step five: getToString();
+                       step six: set end visited true
+                       step six: loop over each node to find shortest path from A to remaining.
+                }
+            }
+
+
+
+         */
+
+
+    }
+
+    public Main(boolean testing) {
+        Node node = new Node("A");
+        node.addEdge(new Edge(node, node, 12));
+        node.addEdge(new Edge(node, node, 12));
+        node.addEdge(new Edge(node, node, 10));
+        node.addEdge(new Edge(node, node, 5));
+        node.addEdge(new Edge(node, node, 3));
+
+        List<Edge> testList = node.getSmallestEdge();
+        System.out.println("testList.size() = " + testList.size());
+
+    }
+
+    public static void main(String[] args) {
+        new Main();
+    }
+
+    private void printSetup() {
+        for (Node n : inital) {
             System.out.print(n.getName() + ": ");
             for (Edge e : n.getEdges()) {
                 System.out.println("\t" + e);
             }
             System.out.println();
         }
-*/
-        shortestpath(inital);
-    }
-
-    public static void main(String[] args) {
-        new Main();
     }
 
     /**
