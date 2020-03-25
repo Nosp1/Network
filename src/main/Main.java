@@ -58,16 +58,40 @@ public class Main {
             }
         }
 
-        /*
-            step one: pick a node.
-            step two: set visited true
+        /*      0: ArrayList<ArrayList<Edge>> finalResultList = new ArrayList<>();
+                1: pick a node.
+                2: set visited true
+                3: loop over each node to find shortest path from n to remaining.
+                    for (Node n : initial) {
+                        if (n.visited && !n.finished) {
+                       4: List<Edge> e = getShortestEdge()
+                            if (e.size() > 1) {
+                                ArrayList<Edge> resultList = new ArrayList<>();
+                              for (Edge inner : e) {
+                                   Edge temp =  inner.end() // F -> 12 A
+                                                   F -> 12 B
+                                                   f -> 12 C
+                                                   f-> 12 D
+                                                   f-> 12 E
+                                   temp.setVisited(true);
+                                   resultList.add(temp);
+                                   for (Edge edge : resultList) {
+                                        if (edge.start) {
 
-            step three: for (Node n : initial) {
-                if (n.visited && !n.finished) {
-                       step four: getShortestEdge()
-                       step five: getToString();
-                       step six: set end visited true
-                       step six: loop over each node to find shortest path from A to remaining.
+                                        }
+
+                                   }
+
+
+                              }
+                            }
+                       5: ArrayList<Edge> resultList = new ArrayList<>();
+                       6: resultList.add(e)
+                       6: ArrayList<String> results = new ArrayList<>();
+                                    results.add(e.toString())
+                       7: set end visited true
+                                e.getEnd().setVisited(true);
+                       8:
                 }
             }
 
@@ -105,36 +129,8 @@ public class Main {
         }
     }
 
-    /**
-     * Forsøk på å sammenligne alle edges i en Node med en annen Node.
-     */
-    public List<Double> shortestpath(List<Node> nodes) {
-        int y = 0;
 
-        List<Double> sumAllEdges = new ArrayList<>();
-        while (y < 6) {
-            double sum = 0;
-            Node n = nodes.get(y);  //henter node y
-            for (Edge e : n.getEdges()) { //henter edge list
-                System.out.println("e.toString() = " + e.toString());
-                sum = e.getEdgeLength(); //summerer alle edges
-                System.out.println("sum = " + sum);
-                sumAllEdges.add(sum);
 
-                System.out.println("y = " + y);
-            }
-            y++;
-        }
-        for (double i : sumAllEdges) {
-            System.out.println(i);
-        }
-        return sumAllEdges;
-    }
-
-    public void checkSums(List<Integer> list) {
-        //todo compare value of all sums.
-        // if sum < sum1. sum is faster
-    }
 }
 
 

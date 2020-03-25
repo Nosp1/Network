@@ -17,8 +17,8 @@ public class Edge {
 
     @Override
     public String toString() {
-
-        return "start: " + start.getName() + ", end: " + end.getName() + ", dist: " + edgeLength;
+        return "[" + start.getName() + " " + end.getName() + "]";
+       // return "start: " + start.getName() + ", end: " + end.getName() + ", dist: " + edgeLength;
     }
 
     public Node getStart() {
