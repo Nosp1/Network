@@ -95,6 +95,39 @@ public class Main {
                 }
             }
 
+            public void prims(List<Node> initial) {
+                List<Node> visited = new ArrayList<>();
+                for(Node n : initial) {
+                    Node startingNode = n;
+                    n.setVisited(true);
+                    visited.add(n);
+                        if(n.getVisited() && !n.getFinished()) {
+                            List<Edge> shortest = n.getShortestEdge();
+                            if(shortest.size > 1) {
+                                for(Edge e : shortest) {
+                                    // Node F
+                                    Node temp = new Node(n.getName());
+                                    // 12 -> A, 12 -> B ...
+                                    temp.addEdge(e);
+                                    List<Node> n2 = new ArrayList<>();
+                                    for(Node newNode : initial) {
+                                        // Ikke ta med F på nytt, "F" med kun 1 edge
+                                        if(n3 != n) {
+                                            n2.add(newNode);
+                                        }
+                                    }
+                                    prims(n2);
+                                }
+                            } else {
+                                e.getEnd().setVisited(true);
+                                if(!visited.contains(shortest.getStart()) {
+                                    // velge korteste igjen
+                                }
+                            }
+                        }
+                }
+            }
+
 
 
          */
