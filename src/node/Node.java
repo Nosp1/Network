@@ -7,6 +7,7 @@ public class Node {
 
     String name;
     boolean visited;
+    boolean finished;
     List<Edge> edges;
 
     public Node(String name) {
@@ -24,5 +25,25 @@ public class Node {
 
     public List<Edge> getEdges() {
         return edges;
+    }
+
+    public List<Edge> getSmallestEdge() {
+        Edge shortestEdge = edges.get(1);
+        List<Edge> edgeList = new ArrayList<>();
+        for (Edge e : edges) {
+            if (e.edgeLength > 0) {
+                if (e.getEdgeLength() < shortestEdge.edgeLength) {
+                    shortestEdge = e;
+                }
+            }
+        }
+
+        for (Edge e : edges) {
+            if (e.edgeLength == shortestEdge.edgeLength) {
+                System.out.println("e.edgeLength = " + e.edgeLength);
+                edgeList.add(e);
+            }
+        }
+        return edgeList;
     }
 }

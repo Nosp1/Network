@@ -1,13 +1,13 @@
 package node;
 
 public class Edge {
-    Node node1;
-    Node node2;
+    Node start;
+    Node end;
     double edgeLength;
 
-    public Edge(Node node1, Node node2, double edgeLength) {
-        this.node1 = node1;
-        this.node2 = node2;
+    public Edge(Node start, Node end, double edgeLength) {
+        this.start = start;
+        this.end = end;
         this.edgeLength = edgeLength;
     }
 
@@ -17,6 +17,15 @@ public class Edge {
 
     @Override
     public String toString() {
-        return "node1: " + node1.getName() + ", node2: " + node2.getName() + ", dist: " + edgeLength;
+        return "[" + start.getName() + " " + end.getName() + "]";
+       // return "start: " + start.getName() + ", end: " + end.getName() + ", dist: " + edgeLength;
+    }
+
+    public Node getStart() {
+        return start;
+    }
+
+    public Node getEnd() {
+        return end;
     }
 }
