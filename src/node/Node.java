@@ -27,7 +27,7 @@ public class Node {
         return edges;
     }
 
-    public List<Edge> getSmallestEdge() {
+    public List<Edge> getShortestEdge() {
         Edge shortestEdge = edges.get(1);
         List<Edge> edgeList = new ArrayList<>();
         for (Edge e : edges) {
@@ -45,5 +45,21 @@ public class Node {
             }
         }
         return edgeList;
+    }
+
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 }

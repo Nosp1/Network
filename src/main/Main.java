@@ -10,10 +10,13 @@ public class Main {
 
     int[][] distances;
     List<Node> inital;
+    boolean finished = false;
+    ArrayList<ArrayList<Edge>> finalResults;
 
     public Main() {
         this.distances = new int[6][6];
         inital = new ArrayList<>();
+        finalResults = new ArrayList<>();
         String[] names = {"A", "B", "C", "D", "E", "F"};
 
         distances[0] = new int[]{0, 10, 5, 9999, 3, 12};
@@ -127,12 +130,11 @@ public class Main {
                         }
                 }
             }
-
-
-
          */
-
-
+        // teste på F som første node
+        inital.get(5).setVisited(true);
+        prims(inital);
+        // Reset etter hver runde, eller håndter alt i prims?
     }
 
     public Main(boolean testing) {
@@ -143,13 +145,42 @@ public class Main {
         node.addEdge(new Edge(node, node, 5));
         node.addEdge(new Edge(node, node, 3));
 
-        List<Edge> testList = node.getSmallestEdge();
+        List<Edge> testList = node.getShortestEdge();
         System.out.println("testList.size() = " + testList.size());
 
     }
 
     public static void main(String[] args) {
         new Main();
+    }
+
+    public void prims(List<Node> nodes) {
+        ArrayList<Edge> temp = new ArrayList<>();
+        for (Node n : nodes) {
+            // første gang er kun node F visited og ikke finished
+            if (n.isVisited() && !n.isFinished()) {
+                List<Edge> shortest = n.getShortestEdge();
+                if(shortest.size() > 1) {
+                    // Hvis en node har flere edges som er like korte, må vi teste hver og en av dem
+                    for(Edge e : shortest) {
+                        Node dupeNode = new Node(n.getName());
+                        dupeNode.addEdge(e);
+                        ArrayList<Node> n2 = new ArrayList<>();
+                        for(Node n3 : nodes) {
+                            if(n3 != n) {
+                                n2.add(n3);
+                            }
+                        }
+                        // Finn den korteste veien for alle de korteste (duplikat) edgene
+                        // I oppgave 1 sitt tilfelle; først F -> A, så F -> B, osv.
+                        prims(n2);
+                    }
+                } else {
+                    // Hvis det kun er en edge kan vi trygt legge den til resultatslista
+                    temp.add(shortest.get(0));
+                }
+            }
+        }
     }
 
     private void printSetup() {
