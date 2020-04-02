@@ -21,6 +21,20 @@ public class Edge {
        // return "start: " + start.getName() + ", end: " + end.getName() + ", dist: " + edgeLength;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this) {
+            return true;
+        }
+        return equals((Edge) obj);
+    }
+
+    private boolean equals(Edge e) {
+        return e.start.equals(this.start) &&
+                e.end.equals(this.end) &&
+                e.edgeLength == this.edgeLength;
+    }
+
     public Node getStart() {
         return start;
     }

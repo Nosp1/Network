@@ -27,23 +27,24 @@ public class Node {
         return edges;
     }
 
-    public List<Edge> getShortestEdge() {
+    public List<Edge> getShortestEdge(List<Edge> results) {
         Edge shortestEdge = edges.get(1);
         List<Edge> edgeList = new ArrayList<>();
-        for (Edge e : edges) {
-            if (e.edgeLength > 0) {
-                if (e.getEdgeLength() < shortestEdge.edgeLength) {
+        for(Edge e : edges) {
+            if(e.edgeLength > 0) {
+                if(e.getEdgeLength() < shortestEdge.edgeLength) {
                     shortestEdge = e;
                 }
             }
         }
 
-        for (Edge e : edges) {
-            if (e.edgeLength == shortestEdge.edgeLength) {
+        for(Edge e : edges) {
+            if(!results.contains(e) && e.edgeLength == shortestEdge.edgeLength) {
                 System.out.println("e.edgeLength = " + e.edgeLength);
                 edgeList.add(e);
             }
         }
+        System.out.println("\tedgeList size: " + edgeList.size());
         return edgeList;
     }
 
