@@ -1,13 +1,10 @@
 package node;
 
 public class Edge {
-    Node start;
-    Node end;
     double edgeLength;
+    private boolean isIncluded;
 
-    public Edge(Node start, Node end, double edgeLength) {
-        this.start = start;
-        this.end = end;
+    public Edge(double edgeLength) {
         this.edgeLength = edgeLength;
     }
 
@@ -15,31 +12,11 @@ public class Edge {
         return edgeLength;
     }
 
-    @Override
-    public String toString() {
-        return "[" + start.getName() + " " + end.getName() + "]";
-       // return "start: " + start.getName() + ", end: " + end.getName() + ", dist: " + edgeLength;
+    public boolean isIncluded() {
+        return isIncluded;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if(obj == this) {
-            return true;
-        }
-        return equals((Edge) obj);
-    }
-
-    private boolean equals(Edge e) {
-        return e.start.equals(this.start) &&
-                e.end.equals(this.end) &&
-                e.edgeLength == this.edgeLength;
-    }
-
-    public Node getStart() {
-        return start;
-    }
-
-    public Node getEnd() {
-        return end;
+    public void setIncluded(boolean included) {
+        isIncluded = included;
     }
 }

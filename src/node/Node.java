@@ -1,98 +1,52 @@
 package node;
 
-import java.util.ArrayList;
-import java.util.List;
+import javafx.util.Pair;
+
+import java.util.*;
 
 public class Node {
 
     String name;
-    boolean visited;
-    boolean finished;
-    List<Edge> edges;
+    Map<Node, Edge> edges = new HashMap<>();
+    boolean visited = false;
 
     public Node(String name) {
         this.name = name;
-        this.edges = new ArrayList<>();
+    }
+
+    public Node(String name, Map<Node, Edge> edges) {
+        this.name = name;
+        this.edges = edges;
+    }
+
+    public Pair<Node, Edge> nextMinimum() {
+        Edge nextMinimum = new Edge(Integer.MAX_VALUE);
+        Node nextVertex = this;
+        Iterator<Map.Entry<Node,Edge>> it = edges.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Node,Edge> pair = it.next();
+            if (!pair.getKey().isVisited()) {
+                if (!pair.getValue().isIncluded()) {
+                    if (pair.getValue().getEdgeLength() < nextMinimum.getEdgeLength()) {
+                        nextMinimum = pair.getValue();
+                        nextVertex = pair.getKey();
+                    }
+                }
+            }
+        }
+        return new Pair<>(nextVertex, nextMinimum);
     }
 
     public String getName() {
         return name;
     }
 
-    public void addEdge(Edge edge) {
-        edges.add(edge);
-    }
-
-    public List<Edge> getEdges() {
+    public Map<Node, Edge> getEdges() {
         return edges;
     }
 
-    public List<Edge> getShortestEdge() {
-        System.out.println("First node shortest()");
-        Edge shortestEdge = edges.get(1);
-        List<Edge> edgeList = new ArrayList<>();
-        for(Edge e : edges) {
-            if(e.edgeLength > 0) {
-                if(e.getEdgeLength() < shortestEdge.edgeLength) {
-                    shortestEdge = e;
-                }
-            }
-        }
-
-        for(Edge e : edges) {
-            if(e.edgeLength == shortestEdge.edgeLength) {
-                System.out.println("e.edgeLength = " + e.edgeLength);
-                edgeList.add(e);
-            }
-        }
-        System.out.println("\tedgeList size: " + edgeList.size());
-        return edgeList;
-    }
-
-    public List<Edge> getShortestEdge(List<Edge> results) {
-        System.out.println("\tChecking for cycles");
-        Edge shortestEdge = edges.get(1);
-        List<Edge> edgeList = new ArrayList<>();
-        for(Edge e : edges) {
-            if(e.edgeLength > 0) {
-                // Sjekk at denne edgen ikke lager en krets
-                if(e.getEdgeLength() < shortestEdge.edgeLength) {
-                    boolean newShortest = nonCycle(results, e);
-                    // Om den ikke lager en krets kan vi oppdatere hvilken edge som er den nye korteste
-                    if(newShortest) {
-                        shortestEdge = e;
-                    }
-                }
-            }
-        }
-
-        for(Edge e : edges) {
-            if(nonCycle(results, e) && !results.contains(e) && e.edgeLength == shortestEdge.edgeLength) {
-                System.out.println("e.edgeLength = " + e.edgeLength);
-                edgeList.add(e);
-            }
-        }
-        System.out.print("\t\tedgeList returned: ");
-        for(Edge print : edgeList) {
-            System.out.print(print.start.getName() + ":" + print.end.getName());
-        }
-        System.out.println();
-        System.out.println("\tedgeList size: " + edgeList.size());
-        return edgeList;
-    }
-
-    private boolean nonCycle(List<Edge> results, Edge e) {
-        System.out.println("results used in nonCycle()");
-        System.out.println("\tCurrent edge: " + e.getEdgeLength());
-        for(Edge e2 : results) {
-            System.out.println("\t e   end: " + e.getEnd().getName());
-            System.out.println("\te2 start: " + e.getStart().getName());
-            if(e.getEnd() == e2.getStart()) {
-                System.err.println("Cycle between: " + e.getEnd().getName() + " and " + e2.getStart().getName());
-                return false;
-            }
-        }
-        return true;
+    public void addEdge(Node node, Edge edge) {
+        edges.put(node, edge);
     }
 
     public boolean isVisited() {
@@ -101,13 +55,5 @@ public class Node {
 
     public void setVisited(boolean visited) {
         this.visited = visited;
-    }
-
-    public boolean isFinished() {
-        return finished;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished = finished;
     }
 }
