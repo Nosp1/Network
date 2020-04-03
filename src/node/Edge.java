@@ -3,6 +3,7 @@ package node;
 public class Edge {
     double edgeLength;
     private boolean isIncluded;
+    private boolean isPrinted;
 
     public Edge(double edgeLength) {
         this.edgeLength = edgeLength;
@@ -18,5 +19,13 @@ public class Edge {
 
     public void setIncluded(boolean included) {
         isIncluded = included;
+    }
+
+    public boolean isPrinted() {
+        return isPrinted;
+    }
+
+    public void setPrinted(boolean printed) {
+        isPrinted = printed;
     }
 }

@@ -37,6 +37,28 @@ public class Node {
         return new Pair<>(nextVertex, nextMinimum);
     }
 
+    public String includedToString(){
+        StringBuilder sb = new StringBuilder();
+        if (isVisited()) {
+            Iterator<Map.Entry<Node,Edge>> it = edges.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<Node,Edge> pair = it.next();
+                if (pair.getValue().isIncluded()) {
+                    if (!pair.getValue().isPrinted()) {
+                        sb.append(getName());
+                        sb.append(" --- ");
+                        sb.append(pair.getValue().getEdgeLength());
+                        sb.append(" --> ");
+                        sb.append(pair.getKey().getName());
+                        sb.append("\n");
+                        pair.getValue().setPrinted(true);
+                    }
+                }
+            }
+        }
+        return sb.toString();
+    }
+
     public String getName() {
         return name;
     }
