@@ -25,7 +25,7 @@ B --- 9.0 --> D
 C --- 3.0 --> E
 
 
-#Oppgave 2
+# Oppgave 2
 I denne oppgaven måtte vi bruke Dijkstras algorytme for å finne korteste vei fra ett startpunkt til ett annet slutt punkt. Fra forrige oppgave fant vi ut at Prim's algoritme var en bedre løsning på oppgave en enn å bruke Dijkstras. Løsningen vi har presentert under finner korteste vei fra en start node til alle andre noder. Den tar hensyn til billigere veier fra nabonoder. F.eks om vi ønsker avstanden fra A til D er det billigere å gå til B først. 
 Løsningen presenteres for brukeren ved å printe ut maks-kostnaden for startnoden til alle noder. Dvs at løsningen ikke bare finner korteste vei fra en node til en annen, men også finner den korteste veien videre til resten av nodene. 
 Slik at korteste vei fra [A til D] er A -> B, B -> D.
