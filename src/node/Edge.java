@@ -1,18 +1,31 @@
 package node;
 
 public class Edge {
-    Node node1;
-    Node node2;
     double edgeLength;
+    private boolean isIncluded;
+    private boolean isPrinted;
 
-    public Edge(Node node1, Node node2, double edgeLength) {
-        this.node1 = node1;
-        this.node2 = node2;
+    public Edge(double edgeLength) {
         this.edgeLength = edgeLength;
     }
 
-    @Override
-    public String toString() {
-        return "node1: " + node1.getName() + ", node2: " + node2.getName() + ", dist: " + edgeLength;
+    public double getEdgeLength() {
+        return edgeLength;
+    }
+
+    public boolean isIncluded() {
+        return isIncluded;
+    }
+
+    public void setIncluded(boolean included) {
+        isIncluded = included;
+    }
+
+    public boolean isPrinted() {
+        return isPrinted;
+    }
+
+    public void setPrinted(boolean printed) {
+        isPrinted = printed;
     }
 }
