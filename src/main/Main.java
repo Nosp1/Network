@@ -36,7 +36,7 @@ public class Main {
 
         for (int y = 0; y < distances[0].length; y++) { // først  -> x[0] ->  ned y[] -> x[1] -> ned y[]
             for (int x = 0; x < distances[0].length; x++) {
-                if (distances[x][y] == -1) {
+                if (distances[x][y] <= 0) {
                     break;
                 } else {
                     Edge edge = new Edge(inital.get(x), inital.get(y), distances[x][y]);
@@ -158,60 +158,67 @@ public class Main {
     }
 
     public void prims(List<Node> nodes) {
+        printSetup();
+        System.out.println("##############################");
         ArrayList<Edge> temp = new ArrayList<>();
-        while (!finished) {
-            for (Node n : nodes) {
+        int times = 0;
+        // Fortsett til alle noder er visited
+        while(shouldContinue()) {
+            System.out.println("run #" + times++);
+            for(Node n : nodes) {
                 System.out.println("Current node from initial: " + n.getName());
-                // første gang er kun node F visited og ikke finished
                 if(n.isVisited()) {
-                    List<Edge> shortestEdges = n.getShortestEdge(temp);
-                    for(Edge printE : shortestEdges) {
-                        System.out.println("\tshortestEdge: " + printE.toString());
-                    }
-                    if(shortestEdges.size() > 1) {
-                        // Hvis en node har flere edges som er like korte, må vi teste hver og en av dem
-                        for(Edge e : shortestEdges) {
-                            Node dupeNode = new Node(n.getName());
-                            dupeNode.addEdge(e);
-                            ArrayList<Node> n2 = new ArrayList<>();
-                            for (Node n3 : nodes) {
-                                System.out.println("\tChecking: " + n3.getName() + " against " + n.getName());
-                                if (n3 != n) {
-                                    n2.add(n3);
-                                }
+                    System.out.println(n.getName() + " is visited.");
+                    List<Edge> shortest;
+                    // Finn korteste edge blant alle noder som er visited
+                    if(visitedNodes.size() > 1) {
+                        shortest = n.getShortestEdge(temp);
+                        List<Edge> tempShortest;
+                        for (Node a : visitedNodes) {
+                            // Denne må ta hensyn til å ikke lage kretser
+                            tempShortest = a.getShortestEdge(temp);
+                            // Funnet ny kortest
+                            if(tempShortest.get(0).getEdgeLength() < shortest.get(0).getEdgeLength()) {
+                                shortest = tempShortest;
                             }
-                            System.out.print("\tStarting recursive prims with new List: ");
-                            System.out.println("\t\t");
-                            for(Node printN : n2) {
-                                System.out.print("node: " + printN.getName() + " ");
-                            }
-                            System.out.println();
-                            // Finn den korteste veien for alle de korteste (duplikat) edgene
-                            // I oppgave 1 sitt tilfelle; først F -> A, så F -> B, osv.
-                            prims(n2);
                         }
                     } else {
-                        // Hvis det kun er en edge kan vi trygt legge den til resultatslista
-                        Edge shortest = shortestEdges.get(0);
-                        if(!temp.contains(shortest)) {
-                            temp.add(shortestEdges.get(0));
-                            shortestEdges.get(0).getEnd().setVisited(true);
-                            visitedNodes.add(shortestEdges.get(0).getEnd());
-                        }
+                        // Denne kjøres den første gangen, når det kun er 1 visited node
+                        shortest = n.getShortestEdge();
                     }
-                } else {
-                    System.out.println(n.getName() + " not visited yet.");
+                    // Hvis det er duplikater av den korteste, må vi teste hver duplikat da hvem vi velger kan forandre
+                    // utfallet.
+                    if(shortest.size() > 1) {
+
+                        // Kun 1 kortest edge
+                    } else {
+                        Edge add = shortest.get(0);
+                        System.out.println("\tAdding to temp: " + add.getEnd().getName());
+                        add.getEnd().setVisited(true);
+                        visitedNodes.add(add.getEnd());
+                        //n.getEdges().remove(add);
+                        temp.add(shortest.get(0));
+                    }
                 }
             }
 
-            if(visitedNodes.size() == nodes.size()) {
+            if (visitedNodes.size() == nodes.size()) {
                 finished = true;
+            }
+            for (Edge e : temp) {
+                System.out.println(e.toString());
             }
         }
 
-        for (Edge e : temp) {
-            System.out.println(e.toString());
+    }
+
+    public boolean shouldContinue() {
+        for(Node n : inital) {
+            if(!n.isVisited()) {
+                return true;
+            }
         }
+        return false;
     }
 
     private void printSetup() {
